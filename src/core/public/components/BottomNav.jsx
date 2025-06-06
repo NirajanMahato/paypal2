@@ -19,7 +19,7 @@ const BottomNav = () => {
         <div
           key={item.name}
           onClick={() => setActiveTab(item.name)}
-          className={`flex flex-col items-center justify-center cursor-pointer p-2 rounded-xl ${
+          className={`flex flex-col items-center justify-center cursor-pointer px-3 py-2 rounded-xl ${
             activeTab === item.name ? "text-blue-600 bg-blue-100" : "text-gray-500"
           }`}
         >
