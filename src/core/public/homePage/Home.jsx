@@ -12,7 +12,7 @@ const HomePage = () => {
 
   const [balance, setBalance] = useState(() => {
     const savedBalance = localStorage.getItem("balance");
-    return savedBalance ? parseFloat(savedBalance) : 8970235735848.0;
+    return savedBalance ? parseFloat(savedBalance) : 897023573584.0;
   });
 
   const [recentActivities, setRecentActivities] = useState(() => {
