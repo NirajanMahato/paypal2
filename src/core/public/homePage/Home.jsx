@@ -1,5 +1,5 @@
 import { ArrowRight } from "lucide-react"; // Nice simple arrow icon
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { FaStore } from "react-icons/fa";
 import { useLocation, useNavigate } from "react-router-dom";
 import image1 from "../../../../public/Logo/image1.jpg";
@@ -8,6 +8,7 @@ import BottomNav from "../components/BottomNav";
 const HomePage = () => {
   const navigate = useNavigate();
   const location = useLocation();
+  const processedPayment = useRef(false);
 
   const [balance, setBalance] = useState(() => {
     const savedBalance = localStorage.getItem("balance");
@@ -23,58 +24,62 @@ const HomePage = () => {
   const [successData, setSuccessData] = useState({ username: "", amount: "" });
 
   const handleSendClick = () => {
-    navigate("/send"); // Navigate to send page
+    navigate("/send");
   };
 
   useEffect(() => {
-    if (location.state?.paymentSuccess) {
+    if (location.state?.paymentSuccess && !processedPayment.current) {
+      processedPayment.current = true;
+
       const sentAmount = parseFloat(location.state.amount);
 
-      // 1. Update Balance
+      // Update balance
       setBalance((prevBalance) => {
         const newBalance = prevBalance - sentAmount;
-        localStorage.setItem("balance", newBalance); // save updated balance
+        localStorage.setItem("balance", newBalance);
         return newBalance;
       });
 
-      // 2. Add new activity
+      // Add new activity
+      const newActivity = {
+        id: Date.now(),
+        name: location.state.username,
+        date: new Date().toLocaleDateString("en-GB", {
+          day: "2-digit",
+          month: "short",
+          year: "numeric",
+        }),
+        amount: -sentAmount,
+      };
+
       setRecentActivities((prevActivities) => {
-        const newActivities = [
-          {
-            id: Date.now(), // unique id
-            name: location.state.username,
-            date: new Date().toLocaleDateString("en-GB", {
-              day: "2-digit",
-              month: "short",
-              year: "numeric",
-            }), // e.g., 06 Jun 2025
-            amount: -sentAmount,
-          },
-          ...prevActivities,
-        ];
-        localStorage.setItem("recentActivities", JSON.stringify(newActivities)); // save updated activities
-        return newActivities;
+        const updatedActivities = [newActivity, ...prevActivities];
+        localStorage.setItem(
+          "recentActivities",
+          JSON.stringify(updatedActivities)
+        );
+        return updatedActivities;
       });
 
-      // 3. Show Success Modal
+      // Show success message
       setSuccessData({
         username: location.state.username,
         amount: location.state.amount,
       });
       setShowSuccess(true);
 
-      // 4. Hide after 3 seconds
       setTimeout(() => {
         setShowSuccess(false);
       }, 3000);
 
+      // Clear the navigation state to prevent re-execution
       window.history.replaceState({}, document.title);
     }
   }, [location.state]);
 
   const handleClearRecent = () => {
-    localStorage.removeItem("recentActivities"); // remove from storage
-    setRecentActivities([]); // reset the React state
+    localStorage.removeItem("recentActivities");
+    setRecentActivities([]);
   };
 
   return (
