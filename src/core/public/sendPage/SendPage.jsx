@@ -76,7 +76,7 @@ export default function SendPage() {
           </div>
         </div>
 
-        <div className="lg:px-36 px-8 w-full relative">
+        <div className="lg:px-36 px-6 w-full relative">
 
           {/* Suggestions Dropdown */}
           {showSuggestions && filteredUsers.length > 0 && (
