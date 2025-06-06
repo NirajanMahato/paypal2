@@ -34,9 +34,9 @@ export default function SendPage() {
 
   return (
     <>
-      <div className="min-h-screen bg-white flex flex-col items-start mb-10">
-        <div className="w-full shadow-md mb-6 mt-5">
-          <div className="pb-6 lg:px-28 px-7">
+      <div className="min-h-screen bg-white flex flex-col items-start">
+        <div className="w-full shadow-xs mb-5 mt-2">
+          <div className="pb-3 lg:px-28 px-7">
             <div className="w-32 font-bold text-md">
               <h1 className="px-4 py-3 flex justify-center border-b-2 border-black">
                 Send Money
@@ -45,37 +45,38 @@ export default function SendPage() {
           </div>
         </div>
 
-        <div className="lg:px-36 px-8 w-full relative">
-          <h1 className="text-2xl sm:text-2xl font-bold mb-8">
-            Send payment to
-          </h1>
-
+        <div className="px-4 w-full">
           {/* Search Input */}
-          <div
-            className={`flex items-center w-full max-w-xl px-4 py-5 rounded-full border border-gray-300 ${
-              isFocused ? "outline-2 outline-[#0070E0] outline-offset-2" : ""
-            } bg-white shadow-sm transition-all relative`}
-          >
-            <FaSearch className="text-gray-400 mr-3" />
-            <input
-              type="text"
-              placeholder="Name, username, email, mobile"
-              value={inputValue}
-              onChange={(e) => {
-                setInputValue(e.target.value);
-                setShowSuggestions(true);
-              }}
-              onFocus={() => {
-                setIsFocused(true);
-                setShowSuggestions(true);
-              }}
-              onBlur={() => {
-                setIsFocused(false);
-                setTimeout(() => setShowSuggestions(false), 150); // delay so click can register
-              }}
-              className="w-full bg-transparent outline-none text-base text-gray-700 placeholder-gray-400"
-            />
+          <div className="w-full shadow-sm p-4 rounded-xl border border-gray-300">
+            <div
+              className={`flex items-center w-full max-w-xl px-4 py-2.5 rounded-xl border border-gray-300 ${
+                isFocused ? "outline-2 outline-[#0070E0] outline-offset-2" : ""
+              } bg-white transition-all relative`}
+            >
+              <FaSearch className="text-gray-400 mr-3" />
+              <input
+                type="text"
+                placeholder="Name, email, mobile"
+                value={inputValue}
+                onChange={(e) => {
+                  setInputValue(e.target.value);
+                  setShowSuggestions(true);
+                }}
+                onFocus={() => {
+                  setIsFocused(true);
+                  setShowSuggestions(true);
+                }}
+                onBlur={() => {
+                  setIsFocused(false);
+                  setTimeout(() => setShowSuggestions(false), 150); // delay so click can register
+                }}
+                className="w-full bg-transparent outline-none text-base text-gray-700 placeholder-gray-400"
+              />
+            </div>
           </div>
+        </div>
+
+        <div className="lg:px-36 px-8 w-full relative">
 
           {/* Suggestions Dropdown */}
           {showSuggestions && filteredUsers.length > 0 && (
@@ -112,7 +113,7 @@ export default function SendPage() {
           <button
             onClick={handleNext}
             disabled={inputValue.length <= 5}
-            className={`mt-10 px-8 py-2.5 rounded-full border-2 font-bold text-md ${
+            className={`mt-7 px-8 py-2.5 rounded-full border-2 font-bold text-md ${
               inputValue.length > 5
                 ? "text-white bg-[#0070E0] border-[#0070E0] cursor-pointer"
                 : "text-gray-300 border-gray-300 bg-[#f6f7f8] cursor-not-allowed"

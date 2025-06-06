@@ -179,7 +179,7 @@ const HomePage = () => {
 
       {/* Success Modal */}
       {showSuccess && (
-        <div className="fixed bottom-24 right-4 bg-white border border-gray-200 rounded-xl shadow-lg px-6 py-4 max-w-xs w-full">
+        <div className="fixed top-16 right-4 bg-white border border-gray-200 rounded-xl shadow-lg px-6 py-4 max-w-xs w-full">
           <p className="font-bold text-gray-900 mb-1">
             Money sent successfully
           </p>
@@ -189,6 +189,15 @@ const HomePage = () => {
           </p>
         </div>
       )}
+      <div className="fixed top-6 right-8 bg-white border border-gray-200 rounded-xl shadow-lg px-6 py-4 max-w-xs w-full">
+          <p className="font-bold text-gray-900 mb-1">
+            Money sent successfully
+          </p>
+          <p className="text-gray-700 text-sm">
+            {parseFloat(successData.amount).toFixed(2)} EUR sent to{" "}
+            {successData.username}
+          </p>
+        </div>
 
       <BottomNav />
     </div>

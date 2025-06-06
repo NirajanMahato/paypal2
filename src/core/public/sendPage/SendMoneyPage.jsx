@@ -23,7 +23,7 @@ export default function SendMoneyPage() {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50 flex flex-col items-center p-4 pt-6">
+    <div className="min-h-screen bg-gray-50 flex flex-col items-center p-2 pt-6">
       {/* Header */}
       <div className="w-full flex items-center max-w-md mb-8">
         <button onClick={handleBack} className="text-xl mr-4">
@@ -33,7 +33,7 @@ export default function SendMoneyPage() {
       </div>
 
       {/* User Card */}
-      <div className="w-full max-w-md bg-white rounded-xl shadow-sm p-8 flex flex-col items-center mb-8">
+      <div className="w-full max-w-md bg-white rounded-xl shadow-sm py-8 md:px-6 px-2 flex flex-col items-center mb-8">
         <div className="w-16 h-16 rounded-full bg-blue-500 flex items-center justify-center text-white text-xl font-bold mb-4">
           {username.slice(0, 2).toUpperCase()}
         </div>
