@@ -10,10 +10,7 @@ const HomePage = () => {
   const location = useLocation();
   const processedPayment = useRef(false);
 
-  const [balance, setBalance] = useState(() => {
-    const savedBalance = localStorage.getItem("balance");
-    return savedBalance ? parseFloat(savedBalance) : 897023573584.0;
-  });
+  const [balance, setBalance] = useState(10000000.0); // Always 10 million
 
   const [recentActivities, setRecentActivities] = useState(() => {
     const savedActivities = localStorage.getItem("recentActivities");
@@ -36,7 +33,6 @@ const HomePage = () => {
       // Update balance
       setBalance((prevBalance) => {
         const newBalance = prevBalance - sentAmount;
-        localStorage.setItem("balance", newBalance);
         return newBalance;
       });
 
