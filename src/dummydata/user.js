@@ -1,11 +1,5 @@
 export const dummyUsers = [
   {
-    email: "nirajan44@gmail.com",
-    password: "pass123",
-    username: "nira44",
-    name: "Nirajan Mahato",
-  },
-  {
     email: "aarya07@gmail.com",
     password: "aarya321",
     username: "aarya07",
@@ -23,17 +17,17 @@ export const dummyUsers = [
     username: "rahulv90",
     name: "Rahul Varma",
   },
+  {
+    email: "madhav98@gmail.com",
+    password: "madpass",
+    username: "madhav98",
+    name: "Madhav Rijal",
+  },
   // {
   //   email: "anushka01@gmail.com",
   //   password: "anu123",
   //   username: "anushka01",
   //   name: "Anushka Shrestha",
-  // },
-  // {
-  //   email: "madhav98@gmail.com",
-  //   password: "madpass",
-  //   username: "madhav98",
-  //   name: "Madhav Rijal",
   // },
   // {
   //   email: "sonal.k@gmail.com",

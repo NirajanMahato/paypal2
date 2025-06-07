@@ -10,7 +10,14 @@ const HomePage = () => {
   const location = useLocation();
   const processedPayment = useRef(false);
 
-  const [balance, setBalance] = useState(10000000.0); // Always 10 million
+  const [balance, setBalance] = useState(() => {
+    const savedBalance = sessionStorage.getItem("balance");
+    if (savedBalance !== null) {
+      return parseFloat(savedBalance);
+    }
+    sessionStorage.setItem("balance", 10000000.0); // set initial 10M in storage
+    return 10000000.0;
+  });
 
   const [recentActivities, setRecentActivities] = useState(() => {
     const savedActivities = localStorage.getItem("recentActivities");
@@ -33,6 +40,7 @@ const HomePage = () => {
       // Update balance
       setBalance((prevBalance) => {
         const newBalance = prevBalance - sentAmount;
+        sessionStorage.setItem("balance", newBalance); // update session storage
         return newBalance;
       });
 
