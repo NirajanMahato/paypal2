@@ -49,8 +49,8 @@ const HomePage = () => {
         id: Date.now(),
         name: location.state.username,
         date: new Date().toLocaleDateString("en-GB", {
-          day: "2-digit",
-          month: "short",
+          day: "numeric",
+          month: "numeric",
           year: "numeric",
         }),
         amount: -sentAmount,
@@ -105,7 +105,7 @@ const HomePage = () => {
       </div>
 
       {/* Balance Card */}
-      <div className="w-full max-w-md bg-white rounded-xl shadow-sm p-4 mb-8">
+      <div className="w-full max-w-md bg-white rounded-xl shadow-xs border border-gray-200 p-4 mb-8">
         <p className="text-gray-500 mb-2">PayPal balance</p>
         <p className="text-3xl font-bold mb-4">
           €{balance.toLocaleString(undefined, { minimumFractionDigits: 2 })}
@@ -127,13 +127,13 @@ const HomePage = () => {
       <div className="w-full max-w-md mb-6">
         <p className="text-md font-semibold mb-4">Quick actions</p>
         <div className="grid grid-cols-2 gap-4">
-          <div className="flex flex-col items-center justify-center bg-white rounded-lg shadow-sm p-4 hover:bg-gray-100 cursor-pointer">
-            <FaStore className="text-2xl mb-2" />
-            <p className="text-sm font-medium">Pay in store</p>
+          <div className="flex flex-col items-center justify-center bg-white rounded-lg border border-gray-200 px-4 py-2.5 hover:bg-gray-100 cursor-pointer">
+            <FaStore className="text-md mb-2" />
+            <p className="text-xs font-medium">Pay in store</p>
           </div>
-          <div className="flex flex-col items-center justify-center bg-white rounded-lg shadow-sm p-4 hover:bg-gray-100 cursor-pointer">
-            <ArrowRight className="text-2xl mb-2" />
-            <p className="text-sm font-medium">Transfer to bank</p>
+          <div className="flex flex-col items-center justify-center bg-white rounded-lg border border-gray-200 px-4 py-2.5 hover:bg-gray-100 cursor-pointer">
+            <ArrowRight className="text-md mb-2" />
+            <p className="text-xs font-medium">Transfer to bank</p>
           </div>
         </div>
       </div>
@@ -155,7 +155,7 @@ const HomePage = () => {
           {recentActivities.map((activity) => (
             <div
               key={activity.id}
-              className="flex items-center justify-between bg-white rounded-lg shadow-sm p-4"
+              className="flex items-center justify-between bg-white rounded-lg border border-gray-200 shadow-xs p-4"
             >
               <div className="flex items-center gap-4">
                 <div className="w-10 h-10 flex items-center justify-center rounded-full bg-blue-100 text-blue-600">
